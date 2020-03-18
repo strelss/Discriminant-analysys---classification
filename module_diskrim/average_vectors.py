@@ -1,6 +1,12 @@
 import numpy as np
 
-class Vektor:
+
+class Middle_Vektor:
+    '''
+    Этот класс вычисляет оценки векторов средних а1 и а2 в виде матриц,
+    состоящих из одного столбца и трех строк (ну или элементов, до задницы кароч)
+    '''
+
     def __init__(self, objs_num_s1, evs_num_s1, objs_num_s2, evs_num_s2, evid1, evid2):
         self.objs_num_s1 = objs_num_s1
         self.evs_num_s1 = evs_num_s1
@@ -11,8 +17,8 @@ class Vektor:
 
     def give(self):
         '''
-        Этот метод возвращает оценки векторов средних а1 и а2 в виде матриц,
-        состоящих из одного столбца и трех строк (ну или элементов, до задницы кароч)
+        Метод отдает оценки векторов средних в виде матриц
+        :return:
         '''
         self.x_1_s1_sum = 0  # TODO: сделать в будущем самоопределение по количеству признаков
         self.x_2_s1_sum = 0
@@ -50,4 +56,4 @@ class Vektor:
         self.a1 = np.array([[self.x_1_s1], [self.x_2_s1], [self.x_3_s1]])
         self.a2 = np.array([[self.x_1_s2], [self.x_2_s2], [self.x_3_s2]])
 
-        return self.a1, self.a2
+        return self.a1, self.a2, self.x_1_s1, self.x_2_s1, self.x_3_s1, self.x_1_s2, self.x_1_s2, self.x_1_s2,
