@@ -1,1 +1,2 @@
-"# Discriminant-analysys---classification" 
+Discriminant-analysys --- classification
+in developer
