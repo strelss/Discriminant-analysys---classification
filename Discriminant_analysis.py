@@ -85,48 +85,54 @@ while True:  # The Event Loop
                 '''
                 Расчет ковариационной матрицы для первого образа (объекта)
                 '''
-                self.m11_s1 = (1 / int(self.objs_num_s1)) * (  # TODO: Сделать принцип 0-1-много
+                self.m11_s1 = round((1 / int(self.objs_num_s1)) * (  # TODO: Сделать принцип 0-1-много
                         ((float(self.evid_s1[0]) - float(self.x_1_s1)) ** 2) + (
                     # Вычисление коефициентов матрицы первого образа
                         (float(self.evid_s1[1]) - float(self.x_1_s1)) ** 2) + (
-                                (float(self.evid_s1[2]) - float(self.x_1_s1)) ** 2))
-                # print(self.m11)
-                self.m12_s1 = self.m21_s1 = (1 / int(self.objs_num_s1)) * ((float(self.evid_s1[0]) - float(self.x_1_s1)) * (
-                        float(self.evid_s1[3]) - float(self.x_2_s1)) + (float(self.evid_s1[1]) - float(self.x_1_s1)) * (
-                                                                             float(self.evid_s1[4]) - float(
-                                                                         self.x_2_s1)) + (
-                                                                                 float(self.evid_s1[2]) - float(
-                                                                             self.x_1_s1)) * (
-                                                                             float(self.evid_s1[5]) - float(
-                                                                         self.x_2_s1)))
-                # print(self.m12, self.m21)
-                self.m13_s1 = self.m31_s1 = (1 / int(self.objs_num_s1)) * ((float(self.evid_s1[0]) - float(self.x_1_s1)) * (
-                        float(self.evid_s1[6]) - float(self.x_3_s1)) + (float(self.evid_s1[1]) - float(self.x_1_s1)) * (
-                                                                             float(self.evid_s1[7]) - float(
-                                                                         self.x_3_s1)) + (
-                                                                                 float(self.evid_s1[2]) - float(
-                                                                             self.x_1_s1)) * (
-                                                                             float(self.evid_s1[8]) - float(
-                                                                         self.x_3_s1)))
-                # print(self.m13, self.m31)
-                self.m22_s1 = (1 / int(self.objs_num_s1)) * (((float(self.evid_s1[3]) - float(self.x_2_s1)) ** 2) + (
+                                (float(self.evid_s1[2]) - float(self.x_1_s1)) ** 2)), 2)
+
+                self.m12_s1 = self.m21_s1 = round(
+                    (1 / int(self.objs_num_s1)) * ((float(self.evid_s1[0]) - float(self.x_1_s1)) * (
+                            float(self.evid_s1[3]) - float(self.x_2_s1)) + (
+                                                               float(self.evid_s1[1]) - float(self.x_1_s1)) * (
+                                                           float(self.evid_s1[4]) - float(
+                                                       self.x_2_s1)) + (
+                                                           float(self.evid_s1[2]) - float(
+                                                       self.x_1_s1)) * (
+                                                           float(self.evid_s1[5]) - float(
+                                                       self.x_2_s1))), 2)
+
+                self.m13_s1 = self.m31_s1 = round((1 / int(self.objs_num_s1)) * (
+                            (float(self.evid_s1[0]) - float(self.x_1_s1)) * (
+                            float(self.evid_s1[6]) - float(self.x_3_s1)) + (
+                                        float(self.evid_s1[1]) - float(self.x_1_s1)) * (
+                                    float(self.evid_s1[7]) - float(
+                                self.x_3_s1)) + (
+                                    float(self.evid_s1[2]) - float(
+                                self.x_1_s1)) * (
+                                    float(self.evid_s1[8]) - float(
+                                self.x_3_s1))), 2)
+
+                self.m22_s1 = round((1 / int(self.objs_num_s1)) * (((float(self.evid_s1[3]) - float(self.x_2_s1)) ** 2) + (
                         (float(self.evid_s1[4]) - float(self.x_2_s1)) ** 2) +
-                                                          ((float(self.evid_s1[5]) - float(self.x_2_s1)) ** 2))
-                # print(self.m22)
-                self.m23_s1 = self.m32_s1 = (1 / int(self.objs_num_s1)) * ((float(self.evid_s1[3]) - float(self.x_2_s1)) * (
-                        float(self.evid_s1[6]) - float(self.x_3_s1)) + (float(self.evid_s1[4]) - float(self.x_2_s1)) * (
-                                                                             float(self.evid_s1[7]) - float(
-                                                                         self.x_3_s1)) + (
-                                                                                 float(self.evid_s1[5]) - float(
-                                                                             self.x_2_s1)) * (
-                                                                             float(self.evid_s1[8]) - float(
-                                                                         self.x_3_s1)))
-                # print(self.m23, self.m32)
-                self.m33_s1 = (1 / int(self.objs_num_s1)) * (
+                                                             ((float(self.evid_s1[5]) - float(self.x_2_s1)) ** 2)), 2)
+
+                self.m23_s1 = self.m32_s1 = round((1 / int(self.objs_num_s1)) * (
+                            (float(self.evid_s1[3]) - float(self.x_2_s1)) * (
+                            float(self.evid_s1[6]) - float(self.x_3_s1)) + (
+                                        float(self.evid_s1[4]) - float(self.x_2_s1)) * (
+                                    float(self.evid_s1[7]) - float(
+                                self.x_3_s1)) + (
+                                    float(self.evid_s1[5]) - float(
+                                self.x_2_s1)) * (
+                                    float(self.evid_s1[8]) - float(
+                                self.x_3_s1))), 2)
+
+                self.m33_s1 = round((1 / int(self.objs_num_s1)) * (
                         ((float(self.evid_s1[6]) - float(self.x_3_s1)) ** 2) + (
                         (float(self.evid_s1[7]) - float(self.x_3_s1)) ** 2) + (
-                                (float(self.evid_s1[8]) - float(self.x_3_s1)) ** 2))
-                # print(self.m33)
+                                (float(self.evid_s1[8]) - float(self.x_3_s1)) ** 2)), 2)
+
 
                 M1 = np.array([[self.m11_s1, self.m12_s1, self.m13_s1],  # Построение самой ковариационной матрицы
                                [self.m21_s1, self.m22_s1, self.m23_s1],
@@ -134,53 +140,55 @@ while True:  # The Event Loop
                 print(M1)
 
             def matrix_2(self):
-                self.m11_s2 = (1 / int(self.objs_num_s2)) * (  # TODO: Сделать принцип 0-1-много
+                '''
+                Расчет ковариационной матрицы для второго образа (объекта)
+                '''
+                self.m11_s2 = round((1 / int(self.objs_num_s2)) * (                 # TODO: Сделать принцип 0-1-много
                         ((float(self.evid_s2[0]) - float(self.x_1_s2)) ** 2) + (
-                    # Вычисление коефициентов матрицы первого образа
+                                                                                    # Вычисление коефициентов матрицы второго образа
                         (float(self.evid_s2[1]) - float(self.x_1_s2)) ** 2) + (
-                                (float(self.evid_s2[2]) - float(self.x_1_s2)) ** 2))
-                # print(self.m11)
-                self.m12_s2 = self.m21_s2 = (1 / int(self.objs_num_s2)) * ((float(self.evid_s2[0]) - float(self.x_1_s2)) * (
-                        float(self.evid_s2[3]) - float(self.x_2_s2)) + (float(self.evid_s2[1]) - float(self.x_1_s2)) * (
-                                                                             float(self.evid_s2[4]) - float(
-                                                                         self.x_2_s2)) + (
-                                                                             float(self.evid_s2[2]) - float(
-                                                                         self.x_1_s2)) * (
-                                                                             float(self.evid_s2[5]) - float(
-                                                                         self.x_2_s2)))
-                # print(self.m12, self.m21)
-                self.m13_s2 = self.m31_s2 = (1 / int(self.objs_num_s2)) * ((float(self.evid_s2[0]) - float(self.x_1_s2)) * (
-                        float(self.evid_s2[6]) - float(self.x_3_s2)) + (float(self.evid_s2[1]) - float(self.x_1_s2)) * (
-                                                                             float(self.evid_s2[7]) - float(
-                                                                         self.x_3_s2)) + (
-                                                                             float(self.evid_s2[2]) - float(
-                                                                         self.x_1_s2)) * (
-                                                                             float(self.evid_s2[8]) - float(
-                                                                         self.x_3_s2)))
-                # print(self.m13, self.m31)
-                self.m22_s2 = (1 / int(self.objs_num_s2)) * (((float(self.evid_s2[3]) - float(self.x_2_s2)) ** 2) + (
+                                (float(self.evid_s2[2]) - float(self.x_1_s2)) ** 2)), 2)
+                self.m12_s2 = self.m21_s2 = round((1 / int(self.objs_num_s2)) * (
+                            (float(self.evid_s2[0]) - float(self.x_1_s2)) * (
+                            float(self.evid_s2[3]) - float(self.x_2_s2)) + (
+                                        float(self.evid_s2[1]) - float(self.x_1_s2)) * (
+                                    float(self.evid_s2[4]) - float(
+                                self.x_2_s2)) + (
+                                    float(self.evid_s2[2]) - float(
+                                self.x_1_s2)) * (
+                                    float(self.evid_s2[5]) - float(
+                                self.x_2_s2))), 2)
+                self.m13_s2 = self.m31_s2 = round((1 / int(self.objs_num_s2)) * (
+                            (float(self.evid_s2[0]) - float(self.x_1_s2)) * (
+                            float(self.evid_s2[6]) - float(self.x_3_s2)) + (
+                                        float(self.evid_s2[1]) - float(self.x_1_s2)) * (
+                                    float(self.evid_s2[7]) - float(
+                                self.x_3_s2)) + (
+                                    float(self.evid_s2[2]) - float(
+                                self.x_1_s2)) * (
+                                    float(self.evid_s2[8]) - float(
+                                self.x_3_s2))),2)
+                self.m22_s2 = round((1 / int(self.objs_num_s2)) * (((float(self.evid_s2[3]) - float(self.x_2_s2)) ** 2) + (
                         (float(self.evid_s2[4]) - float(self.x_2_s2)) ** 2) +
-                                                          ((float(self.evid_s2[5]) - float(self.x_2_s2)) ** 2))
-                # print(self.m22)
-                self.m23_s2 = self.m32_s2 = (1 / int(self.objs_num_s2)) * ((float(self.evid_s2[3]) - float(self.x_2_s2)) * (
-                        float(self.evid_s2[6]) - float(self.x_3_s2)) + (float(self.evid_s2[4]) - float(self.x_2_s2)) * (
-                                                                             float(self.evid_s2[7]) - float(
-                                                                         self.x_3_s2)) + (
-                                                                             float(self.evid_s2[5]) - float(
-                                                                         self.x_2_s2)) * (
-                                                                             float(self.evid_s2[8]) - float(
-                                                                         self.x_3_s1)))
-                # print(self.m23, self.m32)
-                self.m33_s2 = (1 / int(self.objs_num_s2)) * (
-                        ((float(self.evid_s2[6]) - float(self.x_3_s2)) ** 2) + (
+                                                             ((float(self.evid_s2[5]) - float(self.x_2_s2)) ** 2)), 2)
+                self.m23_s2 = self.m32_s2 = round((1 / int(self.objs_num_s2)) *
+                                            ((float(self.evid_s2[3]) - float(self.x_2_s2)) * (float(self.evid_s2[6]) - float(self.x_3_s2)) +
+                                                        (float(self.evid_s2[4]) - float(self.x_2_s2)) * (
+                                    float(self.evid_s2[7]) - float(self.x_3_s2)) + (
+                                    float(self.evid_s2[5]) - float(
+                                self.x_2_s2)) * (
+                                    float(self.evid_s2[8]) - float(
+                                self.x_3_s2))), 2)
+                print(self.m23_s2, self.m32_s2)
+                self.m33_s2 = round((1 / int(self.objs_num_s2)) * (((float(self.evid_s2[6]) - float(self.x_3_s2)) ** 2) + (
                         (float(self.evid_s2[7]) - float(self.x_3_s2)) ** 2) + (
-                                (float(self.evid_s2[8]) - float(self.x_3_s2)) ** 2))
-                # print(self.m33)
+                                (float(self.evid_s2[8]) - float(self.x_3_s2)) ** 2)), 2)
 
                 M2 = np.array([[self.m11_s2, self.m12_s2, self.m13_s2],  # Построение самой ковариационной матрицы
                                [self.m21_s2, self.m22_s2, self.m23_s2],
                                [self.m31_s2, self.m32_s2, self.m33_s2]])
                 print(M2)
+                # TODO: Написать код, который вычисляет общую ковариационную матрицу
 
 
         def main():

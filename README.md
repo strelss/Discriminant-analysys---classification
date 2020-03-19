@@ -1,2 +1,3 @@
-Discriminant-analysys --- classification
-in developer
+Discriminant-analysys --- classification\
+
+in developing
