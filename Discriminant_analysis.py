@@ -60,15 +60,52 @@ while True:  # The Event Loop
                    values['s2X1x2'], values['s2X2x2'], values['s2X3x2'],
                    values['s2X1x3'], values['s2X2x3'], values['s2X3x3'])
 
+        evid_s3 = (values['s3x1'], values['s3x2'], values['s3x3'])
+
+
+        class Decision_making:
+            '''
+            Этап принятия решения. Вычисления оценки логарифма отношения правдоподобия
+            и подставление найденного значения в решающее правило
+            '''
+
+            def __init__(self, a1, a2, M, n, X):
+                self.a1 = a1
+                self.a2 = a2
+                self.M = M
+                self.n = n
+                self.X = X
+
+            def first_multipler(self):
+                '''
+                Вычисление первого сомножителя. Разность векторов средних и их транспонирование,
+                умножение на обратную ковариационную матрицу
+                '''
+                self.dif_a = self.a1 - self.a2
+                self.tr_dif_a = np.transpose(self.dif_a)
+
+                self.fir_mul = np.dot(self.tr_dif_a, self.M)
+                return self.fir_mul.round(2)                             #TODO: Необходимо протестировать
+
+            def second_multipler(self):
+                pass
+
 
         def main():
             a = vec.Middle_Vektor(3, 3, 3, 3, evid_s1, evid_s2)
             a = a.give()
-            print(a)
-            print('-------')
-            b = cov_mat.Kovar_Matrix(a[2], a[3], a[4], a[5], a[6], a[7], evid_s1, evid_s2, 3, 3, 3, 3)
-            b.inverse_covariance_matrix()
 
+            # print(a)
+            print('-------')
+
+            b = cov_mat.Kovar_Matrix(a[2], a[3], a[4], a[5], a[6], a[7], evid_s1, evid_s2, 3, 3, 3, 3)
+            b = b.inverse_covariance_matrix()
+            # print(b)
+
+
+            c = Decision_making(a[0], a[1], b, 1, evid_s3)
+            c = c.first_multipler()
+            print(c)
 
 
         main()
