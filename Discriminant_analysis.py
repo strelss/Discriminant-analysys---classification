@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import numpy as np
+import math
 from discrim_module import average_vectors as vec
 from discrim_module import covar_matrix as cov_mat
 from discrim_module import decision_making as dec_mak
@@ -69,6 +70,42 @@ while True:  # The Event Loop
 
 
 
+        class Diagnostic_assessment:
+            '''
+            Расчет оценки достоверности диагностики. Вычисляются оценки первого и второго рода.
+            Для этого вычисляются: расстояние Махаланобиса, стандартное отклонение 1, 2 и функции от них, а именно экспонента и интеграл Лапласа
+            '''
+            def __init__(self, a1, a2, inv_M, m1, m2, n):
+                self.a1 = a1
+                self.a2 = a2
+                self.inv_M = inv_M
+                self.m1 = m1
+                self.m2 = m2
+                self.n = n
+
+            def distance_Mahalanobise(self):            #Раочет расстояния Махаланобиса
+                self.dif_a = self.a1 - self.a2
+                self.tr_dif_a = np.transpose(self.dif_a)
+                self.fir_mul = np.dot(self.tr_dif_a, self.inv_M)
+                # print(self.dif_a)
+                # print()
+                # print(self.fir_mul)
+                self.dis_Mahal_quad = self.dif_a[0]*self.fir_mul[0][0] + self.dif_a[1]*self.fir_mul[0][1] + self.dif_a[2]*self.fir_mul[0][2]
+                self.dis_Mahal = round(math.sqrt(self.dis_Mahal_quad), 2)
+                return self.dis_Mahal
+
+
+            def skv(self):              #Расчет стандартного отклонения 1 и 2
+                self.sig_1 = round(math.sqrt((1 / self.m1) + (1 / self.m2)), 2)
+                self.sig_2 = round(math.sqrt((1 / self.m1) + (1 / self.m2) + (4 / self.n)), 2)
+                return self.sig_1, self.sig_2
+
+            def func_Laplase(self):             #Расчет функции Лапласа
+                pass
+
+            def exp(self):
+                pass
+
 
 
         def main():
@@ -92,6 +129,9 @@ while True:  # The Event Loop
             # print('_-_-_-_-_-_-_-_-')
             # print()
             # print(c2)
+            d = Diagnostic_assessment(a[0], a[1], b, 4, 5, 1)
+            d = d.skv()
+            print(d)
 
         main()
         # sg.popup('Testing complete')
