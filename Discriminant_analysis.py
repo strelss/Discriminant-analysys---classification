@@ -108,11 +108,11 @@ while True:  # The Event Loop
                 # print(self.X_vec)
                 self.sum_a = self.a1 + self.a2
                 self.sec_mul = self.X_vec - self.sum_a
-                self.sec_mul = self.sec_mul
+                # print(self.sec_mul)
                 return self.sec_mul
 
             def decision(self):
-                self.a_t = self.first_multipler()
+                # self.a_t = self.first_multipler()
                 self.a_t = np.transpose(self.first_multipler())
                 self.b_t = self.second_multipler()
                 # print('-----')
@@ -125,6 +125,8 @@ while True:  # The Event Loop
                 # print()
                 self.dec = self.a_t * self.b_t
                 self.dec = (self.dec[0]+self.dec[1]+self.dec[2])/2
+                print(self.dec)
+                print('--------------')
                 return self.dec
 
 
@@ -140,14 +142,14 @@ while True:  # The Event Loop
 
             b = cov_mat.Kovar_Matrix(a[2], a[3], a[4], a[5], a[6], a[7], evid_s1, evid_s2, 4, 3, 5, 3)
             b = b.inverse_covariance_matrix()
-            print(b)
+            # print(b)
             #
             #
-            # c = Decision_making(a[0], a[1], b, 1, evid_s3)
-            # # c1 = c.first_multipler()
+            c = Decision_making(a[0], a[1], b, 1, evid_s3)
+            # c1 = c.first_multipler()
             # # print(c1)
             # # print('-------------')
-            # c2 = c.decision()
+            c2 = c.decision()
             # print()
             # print('_-_-_-_-_-_-_-_-')
             # print()
