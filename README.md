@@ -1,3 +1,5 @@
 Discriminant-analysys --- classification\
 
-in developing
+finished logic \
+
+GUI in developing
