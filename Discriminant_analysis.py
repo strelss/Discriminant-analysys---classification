@@ -78,42 +78,31 @@ while True:  # The Event Loop
         print()
 
 
-                    #TODO: доделать интерфейс и справку. Доделать вывод расчетных данных в лог.
+                    #TODO: доделать справку
 
 
 
         def main():
-            a = vec.Middle_Vektor(4, 3, 5, 3, evid_s1, evid_s2)
-            a = a.give()
+            first_module = vec.Middle_Vektor(4, 3, 5, 3, evid_s1, evid_s2)
+            first_module = first_module.give()
 
-            # print(a)
-            # print('-------')
+            first_module_part_2 = cov_mat.Kovar_Matrix(first_module[2], first_module[3], first_module[4], first_module[5], first_module[6], first_module[7], evid_s1, evid_s2, 4, 3, 5, 3)
+            first_module_part_2 = first_module_part_2.inverse_covariance_matrix()
 
-            b = cov_mat.Kovar_Matrix(a[2], a[3], a[4], a[5], a[6], a[7], evid_s1, evid_s2, 4, 3, 5, 3)
-            b = b.inverse_covariance_matrix()
-            # print(b)
-            #
-            #
-            c = dec_mak.Decision_making(a[0], a[1], b, 1, evid_s3)
-            # c1 = c.first_multipler()
-            # # print(c1)
-            # # print('-------------')
-            c2 = c.decision()
-            # print()
-            # print('_-_-_-_-_-_-_-_-')
-            # print()
-            # print(c2)
-            d = dia_as.Diagnostic_assessment(a[0], a[1], b, 4, 5, 1)
-            d = d.main()
-            # print(d)
+            second_module = dec_mak.Decision_making(first_module[0], first_module[1], first_module_part_2, 1, evid_s3)
+            second_module = second_module.decision()
+
+            third_module = dia_as.Diagnostic_assessment(first_module[0], first_module[1], first_module_part_2, 4, 5, 1)
+            third_module = third_module.main()
+
             print()
             print('В результате вычислений сделан такой вывод: ')
-            if c2[1] == 1:
+            if second_module[1] == 1:
                 print()
-                print('        исследуемый объект \u1E8C принадлежит к образу S\u00b9 с вероятностью ' + str(d))
-            elif c2[1] == 2:
+                print('        исследуемый объект \u1E8C принадлежит к образу S\u00b9 с вероятностью ' + str(third_module))
+            elif second_module[1] == 2:
                 print()
-                print('        исследуемый объект \u1E8C принадлежит к образу S\u00b2 с вероятностью ' + str(d))
+                print('        исследуемый объект \u1E8C принадлежит к образу S\u00b2 с вероятностью ' + str(third_module))
             print()
             print('Исследование завершено.')
         main()

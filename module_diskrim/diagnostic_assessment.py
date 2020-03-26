@@ -30,9 +30,6 @@ class Diagnostic_assessment:
         self.dif_a = self.a1 - self.a2
         self.tr_dif_a = np.transpose(self.dif_a)
         self.fir_mul = np.dot(self.tr_dif_a, self.inv_M)
-        # print(self.dif_a)
-        # print()
-        # print(self.fir_mul)
         self.dis_Mahal_quad = self.dif_a[0 ] *self.fir_mul[0][0] + self.dif_a[1 ] *self.fir_mul[0][1] + self.dif_a[2 ] \
                               *self.fir_mul[0][2]
         self.dis_Mahal = round(math.sqrt(self.dis_Mahal_quad), 2)
@@ -88,5 +85,4 @@ class Diagnostic_assessment:
         print('Третий модуль вычислений завершен.')
         print('______________________________________________________________________________________________')
         print()
-        # print(self.veracity)
         return self.veracity
