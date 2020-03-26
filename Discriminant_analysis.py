@@ -42,7 +42,7 @@ research_obj = [
 layout = [
     [sg.Column(col_obj1), sg.Column(research_obj)],
     [sg.Column(col_obj2)],
-    [sg.Output(size=(88, 20))],
+    [sg.Output(size=(95, 20))],
     [sg.Submit('Начать исследование'), sg.Cancel('Выход')]
 ]
 window = sg.Window('Discriminant_classification', layout)
@@ -55,6 +55,9 @@ while True:  # The Event Loop
         break
     if event == 'Начать исследование':
         print('Начало расчета:')
+        print()
+
+                    #Взятие введенных данных и упаковка в кортежи
         evid_s1 = (float(values['s1X1x1']), float(values['s1X2x1']), float(values['s1X3x1']), float(values['s1X4x1']),
                    float(values['s1X1x2']), float(values['s1X2x2']), float(values['s1X3x2']), float(values['s1X4x2']),
                    float(values['s1X1x3']), float(values['s1X2x3']), float(values['s1X3x3']), float(values['s1X4x3']))
@@ -65,9 +68,15 @@ while True:  # The Event Loop
 
         evid_s3 = (float(values['s3x1']), float(values['s3x2']), float(values['s3x3']))
 
-        # print(evid_s1)
-        #
-        # print(evid_s2)
+        print('Введенные данные:')
+        print()
+        print('1. Образ Образ S\u00b9: ' + str(evid_s1))
+        print()
+        print('2. Образ Образ S\u00b2: ' + str(evid_s2))
+        print()
+        print('3. Исследуемый объект \u1E8C: ' + str(evid_s3))
+        print('______________________________________________________________________________________________')
+        print()
 
 
                     #TODO: доделать интерфейс и справку. Доделать вывод расчетных данных в лог.
@@ -98,6 +107,14 @@ while True:  # The Event Loop
             d = dia_as.Diagnostic_assessment(a[0], a[1], b, 4, 5, 1)
             d = d.main()
             # print(d)
-
+            print()
+            print('В результате вычислений сделан такой вывод: ')
+            if c2[1] == 1:
+                print()
+                print('        исследуемый объект \u1E8C принадлежит к образу S\u00b9 с вероятностью ' + str(d))
+            elif c2[1] == 2:
+                print()
+                print('        исследуемый объект \u1E8C принадлежит к образу S\u00b2 с вероятностью ' + str(d))
+            print()
+            print('Исследование завершено.')
         main()
-        # sg.popup('Testing complete')

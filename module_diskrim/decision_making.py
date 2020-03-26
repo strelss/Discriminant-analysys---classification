@@ -14,6 +14,16 @@ class Decision_making:
         self.n = n
         self.X = X
 
+        print()
+        print('Инициализация модуля второго этапа.')
+        print()
+        print('Второй этап: принятие решения.')
+        print('Вычисление:')
+        print('     оценки оценки логарифма отношения правдоподобия lnL\u0302;')
+        print('     подстановка найденного значения в решающее правило lnC = 0;')
+        print('     составление вывода.')
+        print()
+
     def first_multipler(self):
         '''
         Вычисление первого сомножителя. Разность векторов средних и их транспонирование,
@@ -60,6 +70,20 @@ class Decision_making:
         # print()
         self.dec = self.a_t * self.b_t
         self.dec = (self.dec[0 ] +self.dec[1 ] +self.dec[2] ) /2
-        print(self.dec)
-        print('--------------')
-        return self.dec
+        self.obj = 0
+        if self.dec > 0:
+            print('lnL\u0302 = ' + str(self.dec) + ' > 0')
+            print()
+            print('Результаты вычислений свидетельствуют о том, что исследуемый объект \u1E8C принадлежит образу S\u00b9.')
+            print()
+            self.obj = 1
+        elif self.dec < 0:
+            print('lnL\u0302 = ' + str(self.dec) + ' < 0')
+            print()
+            print('Результаты вычислений свидетельствуют о том, что исследуемый объект \u1E8C принадлежит образу S\u00b2.')
+            print()
+            self.obj = 2
+        print('Второй модуль вычислений завершен.')
+        print('______________________________________________________________________________________________')
+        print()
+        return self.dec, self.obj
