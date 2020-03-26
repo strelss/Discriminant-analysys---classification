@@ -1,5 +1,3 @@
-Discriminant-analysys --- classification\
+Discriminant analysys - classification object \
 
-finished logic \
-
-GUI in developing
+dndia v.1.0

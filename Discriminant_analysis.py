@@ -42,17 +42,26 @@ research_obj = [
 layout = [
     [sg.Column(col_obj1), sg.Column(research_obj)],
     [sg.Column(col_obj2)],
-    [sg.Output(size=(105, 20))],
-    [sg.Submit('Начать исследование'), sg.Cancel('Выход')]
+    [sg.Output(size=(102, 20))],
+    [sg.Submit('Начать исследование'), sg.Submit('Справка'), sg.Cancel('Выход')]
 ]
 window = sg.Window('Discriminant_classification', layout)
-print('Testing')
+
+
+sg.popup('Запущена программа дискриминантного анализа - классификации объектов.\n'
+         'Подробная информация содержится в справке.\n'
+         '\n'
+         'dndia v.1.0')
+
 
 while True:  # The Event Loop
     event, values = window.read()
+
     if event in (None, 'Выход', 'Cancel'):
         break
     if event == 'Начать исследование':
+
+
         print('Начало расчета:')
         print()
 
@@ -76,11 +85,6 @@ while True:  # The Event Loop
         print('3. Исследуемый объект \u1E8C: ' + str(evid_s3))
         print('______________________________________________________________________________________________')
         print()
-
-
-                    #TODO: доделать справку
-
-
 
         def main():
             first_module = vec.Middle_Vektor(4, 3, 5, 3, evid_s1, evid_s2)
@@ -106,3 +110,10 @@ while True:  # The Event Loop
             print()
             print('Исследование завершено.')
         main()
+
+    if event == 'Справка':
+        sg.popup('Данная программа расчитывает принадлежность исследуемого объекта к одному из образов с определенной вероятностью.\n'
+                 'Метод расчета был позаимствован из книги "Диагностика кризисного состояния предприятия" автора д.т.н., профессора Я.А.Фомина \n'
+                 'Издательство Юнити, Москва 2003, стр. 122-131.\n'
+                 '\n'
+                 'dndia v.1.0')
